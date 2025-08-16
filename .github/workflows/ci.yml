@@ -18,4 +18,4 @@ jobs:
           xcode-version: latest-stable
 
       - name: Build and test
-        run: xcodebuild -scheme EspaOil -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' test
+        run: xcodebuild -scheme EspaOil -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.1' test
