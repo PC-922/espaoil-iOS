@@ -35,7 +35,7 @@ struct GasStationRow: View {
 private extension GasStationRow {
     var icon: some View {
         Image(systemName: Constants.fuelPumpIcon)
-            .foregroundColor(.blue)
+            .foregroundColor(.accentColor)
             .font(.title2)
             .frame(width: Constants.iconWidth)
     }
