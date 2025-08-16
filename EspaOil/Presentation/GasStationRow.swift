@@ -28,16 +28,16 @@ struct GasStationRow: View {
         .padding(.horizontal, 12)
         .background(Color(.systemBackground))
         .cornerRadius(12)
-        .shadow(color: .black.opacity(0.5), radius: 1, x: 0, y: 0)
+        .shadow(color: .black.opacity(Constants.shadowOpacity), radius: Constants.shadowRadius, x: 0, y: 0)
     }
 }
 
 private extension GasStationRow {
     var icon: some View {
-        Image(systemName: "fuelpump.fill")
+        Image(systemName: Constants.fuelPumpIcon)
             .foregroundColor(.blue)
             .font(.title2)
-            .frame(width: 30)
+            .frame(width: Constants.iconWidth)
     }
     
     var name: some View {
@@ -55,7 +55,7 @@ private extension GasStationRow {
     
     var schedule: some View {
         HStack {
-            Image(systemName: "clock")
+            Image(systemName: Constants.clockIcon)
                 .font(.caption)
                 .foregroundColor(.secondary)
             Text(gasStation.horario)
@@ -68,7 +68,7 @@ private extension GasStationRow {
     var distance: some View {
         if let userLocation = userLocation {
             HStack {
-                Image(systemName: "location")
+                Image(systemName: Constants.locationIcon)
                     .font(.caption)
                     .foregroundColor(.secondary)
                 Text(gasStation.formattedDistance(from: userLocation))
@@ -84,10 +84,25 @@ private extension GasStationRow {
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
-            Text("€/L")
+            Text(Localizables.priceUnit)
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
+    }
+}
+
+private extension GasStationRow {
+    enum Localizables {
+        static let priceUnit = "€/L"
+    }
+    
+    enum Constants {
+        static let fuelPumpIcon = "fuelpump.fill"
+        static let clockIcon = "clock"
+        static let locationIcon = "location"
+        static let shadowOpacity = 0.5
+        static let shadowRadius: CGFloat = 1
+        static let iconWidth: CGFloat = 30
     }
 }
 
