@@ -13,8 +13,16 @@ final class GasStationService: ObservableObject {
     @Published var isLoadingStations: Bool = false
     @Published var errorMessage: String?
     @Published var sortOption: SortOption = .price
-    @Published var selectedFuelType: FuelType = .gasoline95E5
-    @Published var searchRadiusKm: String = "10" // Umbral en kilómetros como String para el TextField
+    @Published var selectedFuelType: FuelType {
+        didSet {
+            UserPreferences.shared.selectedFuelType = selectedFuelType
+        }
+    }
+    @Published var searchRadiusKm: String {
+        didSet {
+            UserPreferences.shared.searchRadiusKm = searchRadiusKm
+        }
+    }
     
     private var allGasStations: [GasStation] = []
     private var userLocation: CLLocation?
@@ -26,6 +34,8 @@ final class GasStationService: ObservableObject {
     
     init(repository: GasStationRepositoryProtocol = GasStationRepository()) {
         self.repository = repository
+        self.selectedFuelType = UserPreferences.shared.selectedFuelType
+        self.searchRadiusKm = UserPreferences.shared.searchRadiusKm
     }
     
     func searchNearbyGasStations(location: CLLocation) {

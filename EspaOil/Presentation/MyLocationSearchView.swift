@@ -21,25 +21,7 @@ struct MyLocationSearchView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                header
-                Divider()
-                if locationManager.isLoading {
-                    loadingLocation
-                } else if gasStationService.isLoadingStations {
-                    loadingGasStations
-                } else if !gasStationService.gasStations.isEmpty {
-                    searchResultsView
-                } else if locationManager.errorMessage != nil {
-                    locationErrorView
-                } else if gasStationService.errorMessage != nil {
-                    gasStationErrorView
-                } else {
-                    emptyState
-                }
-            }
-        }
+        content
         .onChange(of: locationManager.location) { oldValue, newLocation in
             if let location = newLocation {
                 gasStationService.searchNearbyGasStations(location: location)
@@ -53,6 +35,27 @@ struct MyLocationSearchView: View {
 
 //MARK: - Views
 private extension MyLocationSearchView {
+    
+    var content: some View {
+        VStack(spacing: 0) {
+            header
+            Divider()
+            if locationManager.isLoading {
+                loadingLocation
+            } else if gasStationService.isLoadingStations {
+                loadingGasStations
+            } else if !gasStationService.gasStations.isEmpty {
+                searchResultsView
+            } else if locationManager.errorMessage != nil {
+                locationErrorView
+            } else if gasStationService.errorMessage != nil {
+                gasStationErrorView
+            } else {
+                emptyState
+            }
+        }
+    }
+    
     var header: some View {
         VStack {
             title
