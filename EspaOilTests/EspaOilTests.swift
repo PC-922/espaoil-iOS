@@ -6,9 +6,9 @@
 //
 
 import Testing
-@testable import Project01
+@testable import EspaOil
 
-struct Project01Tests {
+struct EspaOilTests {
 
     @Test func example() async throws {
         // Write your test here and use APIs like `#expect(...)` to check expected conditions.

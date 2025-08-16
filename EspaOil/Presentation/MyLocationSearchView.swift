@@ -258,7 +258,7 @@ private extension MyLocationSearchView {
     }
 
     var gasStationList: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             LazyVStack(spacing: 12) {
                 ForEach(gasStationService.gasStations) { station in
                     GasStationRow(
