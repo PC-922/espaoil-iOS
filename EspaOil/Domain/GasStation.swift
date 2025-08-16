@@ -10,39 +10,37 @@ import CoreLocation
 
 struct GasStation: Identifiable {
     let id = UUID()
-    let comercializadora: String
-    let nombre: String
-    let pueblo: String
-    let municipio: String
-    let horario: String
-    let precio: String
-    let latitud: String
-    let longitud: String
+    let name: String
+    let town: String
+    let municipality: String
+    let schedule: String
+    let price: String
+    let latitude: String
+    let longitude: String
     
-    // Computed properties para facilitar el uso
     var priceDouble: Double {
-        return Double(precio.replacingOccurrences(of: ",", with: ".")) ?? 0.0
+        return Double(price.replacingOccurrences(of: ",", with: ".")) ?? 0.0
     }
     
     var coordinate: CLLocationCoordinate2D? {
-        guard let lat = Double(latitud.replacingOccurrences(of: ",", with: ".")),
-              let lon = Double(longitud.replacingOccurrences(of: ",", with: ".")) else {
+        guard let lat = Double(latitude.replacingOccurrences(of: ",", with: ".")),
+              let lon = Double(longitude.replacingOccurrences(of: ",", with: ".")) else {
             return nil
         }
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
     var displayName: String {
-        return nombre.isEmpty ? comercializadora : nombre
+        name
     }
     
     var fullAddress: String {
-        if pueblo.isEmpty {
-            return municipio
-        } else if pueblo == municipio {
-            return municipio
+        if town.isEmpty {
+            return municipality
+        } else if town == municipality {
+            return municipality
         } else {
-            return "\(pueblo), \(municipio)"
+            return "\(town), \(municipality)"
         }
     }
     
@@ -69,64 +67,58 @@ extension GasStation {
     static func getMock(by location: CLLocation) -> [GasStation] {
         [
             GasStation(
-                comercializadora: "Repsol",
-                nombre: "Estación Repsol Centro",
-                pueblo: "Madrid",
-                municipio: "Madrid",
-                horario: "24 horas",
-                precio: "1.459",
-                latitud: String(location.coordinate.latitude + 0.01),
-                longitud: String(location.coordinate.longitude + 0.01)
+                name: "Estación Repsol Centro",
+                town: "Madrid",
+                municipality: "Madrid",
+                schedule: "24 horas",
+                price: "1.459",
+                latitude: String(location.coordinate.latitude + 0.01),
+                longitude: String(location.coordinate.longitude + 0.01)
             ),
             GasStation(
-                comercializadora: "Cepsa",
-                nombre: "Cepsa Express",
-                pueblo: "Madrid",
-                municipio: "Madrid",
-                horario: "06:00 - 22:00",
-                precio: "1.425",
-                latitud: String(location.coordinate.latitude - 0.02),
-                longitud: String(location.coordinate.longitude + 0.015)
+                name: "Cepsa Express",
+                town: "Madrid",
+                municipality: "Madrid",
+                schedule: "06:00 - 22:00",
+                price: "1.425",
+                latitude: String(location.coordinate.latitude - 0.02),
+                longitude: String(location.coordinate.longitude + 0.015)
             ),
             GasStation(
-                comercializadora: "BP",
-                nombre: "BP Station",
-                pueblo: "Alcorcón",
-                municipio: "Madrid",
-                horario: "24 horas",
-                precio: "1.478",
-                latitud: String(location.coordinate.latitude + 0.015),
-                longitud: String(location.coordinate.longitude - 0.02)
+                name: "BP Station",
+                town: "Alcorcón",
+                municipality: "Madrid",
+                schedule: "24 horas",
+                price: "1.478",
+                latitude: String(location.coordinate.latitude + 0.015),
+                longitude: String(location.coordinate.longitude - 0.02)
             ),
             GasStation(
-                comercializadora: "Shell",
-                nombre: "Shell Select",
-                pueblo: "Getafe",
-                municipio: "Madrid",
-                horario: "05:30 - 23:30",
-                precio: "1.445",
-                latitud: String(location.coordinate.latitude - 0.01),
-                longitud: String(location.coordinate.longitude - 0.01)
+                name: "Shell Select",
+                town: "Getafe",
+                municipality: "Madrid",
+                schedule: "05:30 - 23:30",
+                price: "1.445",
+                latitude: String(location.coordinate.latitude - 0.01),
+                longitude: String(location.coordinate.longitude - 0.01)
             ),
             GasStation(
-                comercializadora: "Galp",
-                nombre: "Galp Energy",
-                pueblo: "Leganés",
-                municipio: "Madrid",
-                horario: "24 horas",
-                precio: "1.412",
-                latitud: String(location.coordinate.latitude + 0.008),
-                longitud: String(location.coordinate.longitude + 0.025)
+                name: "Galp Energy",
+                town: "Leganés",
+                municipality: "Madrid",
+                schedule: "24 horas",
+                price: "1.412",
+                latitude: String(location.coordinate.latitude + 0.008),
+                longitude: String(location.coordinate.longitude + 0.025)
             ),
             GasStation(
-                comercializadora: "Petronor",
-                nombre: "Petronor Express",
-                pueblo: "Móstoles",
-                municipio: "Madrid",
-                horario: "07:00 - 21:00",
-                precio: "1.435",
-                latitud: String(location.coordinate.latitude - 0.005),
-                longitud: String(location.coordinate.longitude + 0.008)
+                name: "Petronor Express",
+                town: "Móstoles",
+                municipality: "Madrid",
+                schedule: "07:00 - 21:00",
+                price: "1.435",
+                latitude: String(location.coordinate.latitude - 0.005),
+                longitude: String(location.coordinate.longitude + 0.008)
             )
         ]
     }

@@ -58,7 +58,7 @@ private extension GasStationRow {
             Image(systemName: Constants.clockIcon)
                 .font(.caption)
                 .foregroundColor(.secondary)
-            Text(gasStation.horario)
+            Text(gasStation.schedule)
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
@@ -80,7 +80,7 @@ private extension GasStationRow {
     
     var price: some View {
         VStack(alignment: .trailing) {
-            Text(gasStation.precio)
+            Text(gasStation.price)
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
@@ -109,14 +109,13 @@ private extension GasStationRow {
 #Preview {
     GasStationRow(
         gasStation: GasStation(
-            comercializadora: "Repsol",
-            nombre: "Estación Repsol Centro",
-            pueblo: "Madrid",
-            municipio: "Madrid",
-            horario: "24 horas",
-            precio: "1.459",
-            latitud: "40.4168",
-            longitud: "-3.7038"
+            name: "Estación Repsol Centro",
+            town: "Madrid",
+            municipality: "Madrid",
+            schedule: "24 horas",
+            price: "1.459",
+            latitude: "40.4168",
+            longitude: "-3.7038"
         ),
         userLocation: CLLocation(latitude: 40.4168, longitude: -3.7038)
     )
