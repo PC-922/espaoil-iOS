@@ -9,8 +9,16 @@ import SwiftUI
 import CoreLocation
 
 struct MyLocationSearchView: View {
-    @StateObject private var locationManager = LocationManager()
-    @StateObject private var gasStationService = GasStationService()
+    @StateObject private var locationManager: LocationManager
+    @StateObject private var gasStationService: GasStationService
+    
+    init(
+        locationManager: LocationManager = LocationManager(),
+        gasStationService: GasStationService = GasStationService()
+    ) {
+        self._locationManager = StateObject(wrappedValue: locationManager)
+        self._gasStationService = StateObject(wrappedValue: gasStationService)
+    }
     
     var body: some View {
         NavigationView {
@@ -57,20 +65,20 @@ private extension MyLocationSearchView {
     }
     
     var title: some View {
-        Text("EspaOil")
+        Text(Localizables.appTitle)
             .font(.title3)
             .fontWeight(.bold)
     }
     
     var fuelTypeSelector: some View {
         HStack {
-            Text("Tipo de combustible:")
+            Text(Localizables.fuelTypeLabel)
                 .font(.subheadline)
                 .fontWeight(.medium)
             Spacer()
-            Picker("Tipo de combustible", selection: $gasStationService.selectedFuelType) {
+            Picker(Localizables.fuelTypeLabel, selection: $gasStationService.selectedFuelType) {
                 ForEach(FuelType.allCases, id: \.self) { fuelType in
-                    Text(fuelType.displayName)
+                    Text(fuelType.rawValue)
                         .tag(fuelType)
                 }
             }
@@ -84,22 +92,20 @@ private extension MyLocationSearchView {
     
     var distanceThresholdField: some View {
         HStack {
-            Text("Radio de búsqueda (km):")
+            Text(Localizables.searchRadiusLabel)
                 .font(.subheadline)
                 .fontWeight(.medium)
             Spacer()
-            TextField("10", text: $gasStationService.searchRadiusKm)
+            TextField(Constants.defaultSearchRadius, text: $gasStationService.searchRadiusKm)
                 .keyboardType(.numberPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: 80)
                 .multilineTextAlignment(.center)
                 .onChange(of: gasStationService.searchRadiusKm) { oldValue, newValue in
-                    // Filtrar para permitir solo números y punto decimal
-                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                    let filtered = newValue.filter { Constants.permittedCharacters.contains($0) }
                     if filtered != newValue {
                         gasStationService.searchRadiusKm = filtered
                     }
-                    // Actualizar la búsqueda si hay gasolineras cargadas
                     if !gasStationService.gasStations.isEmpty {
                         gasStationService.updateSearchRadius(filtered)
                     }
@@ -119,9 +125,9 @@ private extension MyLocationSearchView {
                         .scaleEffect(0.8)
                         .tint(.white)
                 } else {
-                    Image(systemName: "location.fill")
+                    Image(systemName: Constants.locationIcon)
                 }
-                Text(locationManager.isLoading ? "Obteniendo ubicación..." : "Buscar Gasolineras")
+                Text(locationManager.isLoading ? Localizables.gettingLocationText : Localizables.searchGasStationsButton)
             }
             .padding()
             .frame(maxWidth: .infinity)
@@ -149,7 +155,7 @@ private extension MyLocationSearchView {
         VStack(spacing: 12) {
             ProgressView()
                 .scaleEffect(1.2)
-            Text("Buscando tu ubicación...")
+            Text(Localizables.searchingLocationText)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -161,7 +167,7 @@ private extension MyLocationSearchView {
         VStack(spacing: 12) {
             ProgressView()
                 .scaleEffect(1.2)
-            Text("Buscando gasolineras cercanas...")
+            Text(Localizables.searchingGasStationsText)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -181,10 +187,10 @@ private extension MyLocationSearchView {
     var locationInfo: some View {
         if let location = locationManager.location {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Tu ubicación:")
+                Text(Localizables.yourLocationText)
                     .font(.caption)
                     .foregroundColor(.secondary)
-                Text("Lat: \(location.coordinate.latitude, specifier: "%.4f"), Lon: \(location.coordinate.longitude, specifier: "%.4f")")
+                Text(Localizables.coordinatesFormat(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
                     .font(.caption2)
                     .foregroundColor(.secondary)
             }
@@ -207,7 +213,7 @@ private extension MyLocationSearchView {
     
     var sortHeader: some View {
         HStack {
-            Text("Ordenar por:")
+            Text(Localizables.sortByLabel)
                 .font(.subheadline)
                 .fontWeight(.medium)
             Spacer()
@@ -274,58 +280,43 @@ private extension MyLocationSearchView {
     
     var emptyState: some View {
         VStack(spacing: 16) {
-            Image(systemName: "fuelpump")
+            Image(systemName: Constants.fuelPumpIcon)
                 .font(.system(size: 50))
                 .foregroundColor(.blue)
             
-            Text("Encuentra Gasolineras")
+            Text(Localizables.findGasStationsTitle)
                 .font(.headline)
             
-            Text("Presiona el botón para buscar las gasolineras más baratas cerca de ti")
+            Text(Localizables.findGasStationsDescription)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
     }
     
     @ViewBuilder
     var locationErrorView: some View {
         VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle")
+            Image(systemName: Constants.exclamationTriangleIcon)
                 .font(.system(size: 50))
                 .foregroundColor(.orange)
-            
-            Text("Error de Ubicación")
+            Text(Localizables.locationErrorText)
                 .font(.headline)
-            
-            Text(locationManager.errorMessage ?? "Ocurrió un error al obtener tu ubicación.")
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
     }
     
     @ViewBuilder
     var gasStationErrorView: some View {
         VStack(spacing: 16) {
-            Image(systemName: "fuelpump.slash")
+            Image(systemName: Constants.fuelPumpSlashIcon)
                 .font(.system(size: 50))
                 .foregroundColor(.red)
-            
-            Text("Error al buscar gasolineras")
+            Text(Localizables.gasStationErrorText)
                 .font(.headline)
-            
-            Text(gasStationService.errorMessage ?? "Ocurrió un error al buscar gasolineras.")
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
     }
 }
 
@@ -350,33 +341,71 @@ private extension MyLocationSearchView {
     
     private var statusText: String {
         if locationManager.isLoading {
-            return "Obteniendo ubicación..."
+            return Localizables.gettingLocationText
         } else if gasStationService.isLoadingStations {
-            return "Buscando gasolineras..."
+            return Localizables.searchingGasStationsText
         }
         
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            return "Listo para buscar"
+            return Localizables.readyToSearchText
         case .denied, .restricted:
-            return "Acceso denegado"
+            return Localizables.accessDeniedText
         case .notDetermined:
-            return "Pendiente autorización"
+            return Localizables.pendingAuthorizationText
         @unknown default:
-            return "Estado desconocido"
+            return Localizables.unknownStatusText
         }
     }
     
     private var sortDescription: String {
         switch gasStationService.sortOption {
         case .price:
-            return "(más baratas primero)"
+            return Localizables.cheapestFirstText
         case .distance:
-            return "(más cercanas primero)"
+            return Localizables.nearestFirstText
         }
     }
 }
 
+private extension MyLocationSearchView {
+    enum Localizables {
+        static let appTitle = "EspaOil"
+        static let fuelTypeLabel = "Tipo de combustible:"
+        static let searchRadiusLabel = "Radio de búsqueda (km):"
+        static let gettingLocationText = "Obteniendo ubicación..."
+        static let searchGasStationsButton = "Buscar Gasolineras"
+        static let searchingLocationText = "Buscando tu ubicación..."
+        static let searchingGasStationsText = "Buscando gasolineras cercanas..."
+        static let sortByLabel = "Ordenar por:"
+        static let findGasStationsTitle = "Encuentra Gasolineras"
+        static let findGasStationsDescription = "Presiona el botón para buscar las gasolineras más baratas cerca de ti"
+        static let locationErrorText = "Ocurrió un error al obtener tu ubicación."
+        static let gasStationErrorText = "Ocurrió un error al buscar gasolineras."
+        
+        static let yourLocationText = "Tu ubicación:"
+        static func coordinatesFormat(lat: Double, lon: Double) -> String {
+            return "Lat: \(String(format: "%.4f", lat)), Lon: \(String(format: "%.4f", lon))"
+        }
+        
+        static let readyToSearchText = "Listo para buscar"
+        static let accessDeniedText = "Acceso denegado"
+        static let pendingAuthorizationText = "Pendiente autorización"
+        static let unknownStatusText = "Estado desconocido"
+        static let cheapestFirstText = "(más baratas primero)"
+        static let nearestFirstText = "(más cercanas primero)"
+    }
+    
+    enum Constants {
+        static let permittedCharacters = "0123456789."
+        static let defaultSearchRadius = "10"
+        static let locationIcon = "location.fill"
+        static let fuelPumpIcon = "fuelpump"
+        static let exclamationTriangleIcon = "exclamationmark.triangle"
+        static let fuelPumpSlashIcon = "fuelpump.slash"
+    }
+}
+
 #Preview {
-    MyLocationSearchView()
+    MyLocationSearchView(gasStationService: .init(repository: MockGasStationRepository()))
 }

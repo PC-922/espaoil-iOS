@@ -10,13 +10,26 @@ import SwiftUI
 struct TabBarView: View {
     var body: some View {
         TabView {
-            Tab("Inicio", systemImage: "house.fill") {
+            Tab(Localizables.homeTabTitle, systemImage: Constants.homeIcon) {
                 MyLocationSearchView()
             }
-            Tab("About", systemImage: "questionmark.circle.fill") {
-                Text("PC 922")
+            Tab(Localizables.aboutTabTitle, systemImage: Constants.aboutIcon) {
+                Text(Localizables.aboutContent)
             }
         }
+    }
+}
+
+private extension TabBarView {
+    enum Localizables {
+        static let homeTabTitle = "Inicio"
+        static let aboutTabTitle = "About"
+        static let aboutContent = "PC 922"
+    }
+    
+    enum Constants {
+        static let homeIcon = "house.fill"
+        static let aboutIcon = "questionmark.circle.fill"
     }
 }
 
