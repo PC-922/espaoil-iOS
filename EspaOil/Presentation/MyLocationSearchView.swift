@@ -9,8 +9,16 @@ import SwiftUI
 import CoreLocation
 
 struct MyLocationSearchView: View {
-    @StateObject private var locationManager = LocationManager()
-    @StateObject private var gasStationService = GasStationService()
+    @StateObject private var locationManager: LocationManager
+    @StateObject private var gasStationService: GasStationService
+    
+    init(
+        locationManager: LocationManager = LocationManager(),
+        gasStationService: GasStationService = GasStationService()
+    ) {
+        self._locationManager = StateObject(wrappedValue: locationManager)
+        self._gasStationService = StateObject(wrappedValue: gasStationService)
+    }
     
     var body: some View {
         NavigationView {
@@ -70,7 +78,7 @@ private extension MyLocationSearchView {
             Spacer()
             Picker("Tipo de combustible", selection: $gasStationService.selectedFuelType) {
                 ForEach(FuelType.allCases, id: \.self) { fuelType in
-                    Text(fuelType.displayName)
+                    Text(fuelType.rawValue)
                         .tag(fuelType)
                 }
             }
@@ -287,7 +295,6 @@ private extension MyLocationSearchView {
                 .padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
     }
     
     @ViewBuilder
@@ -296,17 +303,10 @@ private extension MyLocationSearchView {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 50))
                 .foregroundColor(.orange)
-            
-            Text("Error de Ubicación")
+            Text("Ocurrió un error al obtener tu ubicación.")
                 .font(.headline)
-            
-            Text(locationManager.errorMessage ?? "Ocurrió un error al obtener tu ubicación.")
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
     }
     
     @ViewBuilder
@@ -315,17 +315,10 @@ private extension MyLocationSearchView {
             Image(systemName: "fuelpump.slash")
                 .font(.system(size: 50))
                 .foregroundColor(.red)
-            
-            Text("Error al buscar gasolineras")
+            Text("Ocurrió un error al buscar gasolineras.")
                 .font(.headline)
-            
-            Text(gasStationService.errorMessage ?? "Ocurrió un error al buscar gasolineras.")
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
     }
 }
 
@@ -378,5 +371,5 @@ private extension MyLocationSearchView {
 }
 
 #Preview {
-    MyLocationSearchView()
+    MyLocationSearchView(gasStationService: .init(repository: MockGasStationRepository()))
 }

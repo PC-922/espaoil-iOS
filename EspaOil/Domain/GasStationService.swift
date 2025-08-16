@@ -13,15 +13,19 @@ final class GasStationService: ObservableObject {
     @Published var isLoadingStations: Bool = false
     @Published var errorMessage: String?
     @Published var sortOption: SortOption = .price
-    @Published var selectedFuelType: FuelType = .gasoline95
+    @Published var selectedFuelType: FuelType = .gasoline95E5
     @Published var searchRadiusKm: String = "10" // Umbral en kilómetros como String para el TextField
     
     private var allGasStations: [GasStation] = []
     private var userLocation: CLLocation?
+    private let repository: GasStationRepositoryProtocol
     
-    // Computed property para obtener el radio como Double
     var searchRadiusValue: Double {
         return Double(searchRadiusKm) ?? 10.0
+    }
+    
+    init(repository: GasStationRepositoryProtocol = GasStationRepository()) {
+        self.repository = repository
     }
     
     func searchNearbyGasStations(location: CLLocation) {
@@ -29,12 +33,26 @@ final class GasStationService: ObservableObject {
         errorMessage = nil
         userLocation = location
         
-        // Simulamos datos de ejemplo para la demo
-        // En una app real, aquí harías una llamada a una API
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.allGasStations = self.generateSampleGasStations(near: location)
-            self.applySorting()
-            self.isLoadingStations = false
+        Task {
+            do {
+                let stations = try await repository.fetchGasStationsNearby(
+                    latitude: location.coordinate.latitude,
+                    longitude: location.coordinate.longitude,
+                    distance: searchRadiusValue,
+                    fuelType: selectedFuelType
+                )
+                
+                await MainActor.run {
+                    self.allGasStations = stations
+                    self.applySorting()
+                    self.isLoadingStations = false
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = "Error al cargar gasolineras: \(error.localizedDescription)"
+                    self.isLoadingStations = false
+                }
+            }
         }
     }
     
@@ -66,9 +84,5 @@ final class GasStationService: ObservableObject {
                 return distance1 < distance2
             }
         }
-    }
-    
-    private func generateSampleGasStations(near location: CLLocation) -> [GasStation] {
-        GasStation.getMock(by: location)
     }
 }
