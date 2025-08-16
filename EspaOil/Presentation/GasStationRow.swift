@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct GasStationRow: View {
     let gasStation: GasStation
@@ -22,7 +23,10 @@ struct GasStationRow: View {
                 distance
             }
             Spacer()
-            price
+            VStack(alignment: .trailing, spacing: 8) {
+                price
+                mapButton
+            }
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
@@ -89,11 +93,37 @@ private extension GasStationRow {
                 .foregroundColor(.secondary)
         }
     }
+    
+    var mapButton: some View {
+        Button {
+            openInMaps()
+        } label: {
+            Text(Localizables.openInMaps)
+                .font(.caption)
+        }
+    }
+    
+    func openInMaps() {
+        guard let latitude = Double(gasStation.latitude),
+              let longitude = Double(gasStation.longitude) else {
+            return
+        }
+        
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = gasStation.displayName
+        
+        mapItem.openInMaps(launchOptions: [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
+        ])
+    }
 }
 
 private extension GasStationRow {
     enum Localizables {
         static let priceUnit = "€/L"
+        static let openInMaps = "Ver ruta en el mapa"
     }
     
     enum Constants {

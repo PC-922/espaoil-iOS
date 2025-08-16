@@ -35,7 +35,7 @@ final class GasStationRepository: GasStationRepositoryProtocol {
             URLQueryItem(name: "lat", value: String(latitude)),
             URLQueryItem(name: "lon", value: String(longitude)),
             URLQueryItem(name: "distance", value: String(Int(distance * 1000))), // Convertir km a metros
-            URLQueryItem(name: "gasType", value: fuelType.rawValue)
+            URLQueryItem(name: "gasType", value: fuelType.apiValue)
         ]
         
         guard let url = components.url else {
