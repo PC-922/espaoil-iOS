@@ -1,0 +1,21 @@
+name: EspaOil
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Build and test
+        run: xcodebuild -scheme EspaOil -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' test
