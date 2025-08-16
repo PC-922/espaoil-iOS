@@ -78,7 +78,7 @@ private extension MyLocationSearchView {
             Spacer()
             Picker(Localizables.fuelTypeLabel, selection: $gasStationService.selectedFuelType) {
                 ForEach(FuelType.allCases, id: \.self) { fuelType in
-                    Text(fuelType.rawValue)
+                    Text(fuelType.displayName)
                         .tag(fuelType)
                 }
             }
