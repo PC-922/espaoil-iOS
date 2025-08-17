@@ -19,12 +19,17 @@ struct GasStation: Identifiable {
     let longitude: String
     
     var priceDouble: Double {
-        return Double(price.replacingOccurrences(of: ",", with: ".")) ?? 0.0
+        guard let price = Double(price.replacingOccurrences(of: ",", with: ".")) else {
+            return 0.0
+        }
+        return price.isFinite ? price : 0.0
     }
     
     var coordinate: CLLocationCoordinate2D? {
         guard let lat = Double(latitude.replacingOccurrences(of: ",", with: ".")),
-              let lon = Double(longitude.replacingOccurrences(of: ",", with: ".")) else {
+              let lon = Double(longitude.replacingOccurrences(of: ",", with: ".")),
+              lat.isFinite && lon.isFinite,
+              abs(lat) <= 90.0 && abs(lon) <= 180.0 else {
             return nil
         }
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
@@ -48,12 +53,15 @@ struct GasStation: Identifiable {
     func distance(from location: CLLocation) -> Double? {
         guard let stationCoordinate = coordinate else { return nil }
         let stationLocation = CLLocation(latitude: stationCoordinate.latitude, longitude: stationCoordinate.longitude)
-        return location.distance(from: stationLocation)
+        let distance = location.distance(from: stationLocation)
+        return distance.isFinite ? distance : nil
     }
     
     // Formato de distancia legible
     func formattedDistance(from location: CLLocation) -> String {
-        guard let distance = distance(from: location) else { return "Distancia desconocida" }
+        guard let distance = distance(from: location), distance.isFinite else {
+            return String(localized: "distance.unknown")
+        }
         
         if distance < 1000 {
             return String(format: "%.0f m", distance)

@@ -30,6 +30,7 @@ struct MyLocationSearchView: View {
         .animation(.easeInOut(duration: 0.3), value: locationManager.isLoading)
         .animation(.easeInOut(duration: 0.3), value: gasStationService.isLoadingStations)
         .animation(.easeInOut(duration: 0.3), value: gasStationService.gasStations.count)
+        .dismissKeyboardOnTap()
     }
 }
 
@@ -100,17 +101,32 @@ private extension MyLocationSearchView {
                 .fontWeight(.medium)
             Spacer()
             TextField(Constants.defaultSearchRadius, text: $gasStationService.searchRadiusKm)
-                .keyboardType(.numberPad)
+                .keyboardType(.decimalPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: 80)
                 .multilineTextAlignment(.center)
                 .onChange(of: gasStationService.searchRadiusKm) { oldValue, newValue in
+                    // Filtrar solo números y punto decimal
                     let filtered = newValue.filter { Constants.permittedCharacters.contains($0) }
+                    
+                    // Validar que el valor no esté vacío y sea un número válido
                     if filtered != newValue {
                         gasStationService.searchRadiusKm = filtered
+                        return
                     }
-                    if !gasStationService.gasStations.isEmpty {
-                        gasStationService.updateSearchRadius(filtered)
+                    
+                    // Si el campo está vacío, no hacer nada más
+                    guard !filtered.isEmpty else { return }
+                    
+                    // Validar que sea un número válido antes de procesar
+                    if let radius = Double(filtered), radius.isFinite && radius > 0 {
+                        // Solo actualizar si hay gasolineras cargadas
+                        if !gasStationService.gasStations.isEmpty {
+                            gasStationService.updateSearchRadius(filtered)
+                        }
+                    } else if !filtered.isEmpty {
+                        // Si no es un número válido pero no está vacío, revertir al valor anterior
+                        gasStationService.searchRadiusKm = oldValue
                     }
                 }
         }

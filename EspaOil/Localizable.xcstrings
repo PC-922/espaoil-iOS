@@ -18,206 +18,19 @@
         }
       }
     },
-    "fuel.type.label" : {
+    "button.ok" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fuel type:"
+            "value" : "OK"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tipo de combustible:"
-          }
-        }
-      }
-    },
-    "search.radius.label" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search radius (km):"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Radio de búsqueda (km):"
-          }
-        }
-      }
-    },
-    "location.getting" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Getting location..."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obteniendo ubicación..."
-          }
-        }
-      }
-    },
-    "search.button" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Gas Stations"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar Gasolineras"
-          }
-        }
-      }
-    },
-    "location.searching" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Searching your location..."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscando tu ubicación..."
-          }
-        }
-      }
-    },
-    "gas.stations.searching" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Searching nearby gas stations..."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscando gasolineras cercanas..."
-          }
-        }
-      }
-    },
-    "sort.by.label" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sort by:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordenar por:"
-          }
-        }
-      }
-    },
-    "find.gas.stations.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Find Gas Stations"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encuentra Gasolineras"
-          }
-        }
-      }
-    },
-    "find.gas.stations.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Press the button to search for the cheapest gas stations near you"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Presiona el botón para buscar las gasolineras más baratas cerca de ti"
-          }
-        }
-      }
-    },
-    "error.location" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "An error occurred while getting your location."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ocurrió un error al obtener tu ubicación."
-          }
-        }
-      }
-    },
-    "error.gas.stations" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "An error occurred while searching for gas stations."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ocurrió un error al buscar gasolineras."
-          }
-        }
-      }
-    },
-    "location.your" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your location:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu ubicación:"
+            "value" : "OK"
           }
         }
       }
@@ -239,189 +52,355 @@
         }
       }
     },
-    "status.ready" : {
-      "extractionState" : "manual",
+    "coordinates.format %@ %@" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ready to search"
-          }
-        },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listo para buscar"
+            "state" : "new",
+            "value" : "coordinates.format %1$@ %2$@"
           }
         }
       }
     },
-    "status.denied" : {
+    "distance.unknown" : {
+
+    },
+    "environment.available.header" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Access denied"
+            "value" : "Available Environments"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acceso denegado"
+            "value" : "Entornos Disponibles"
           }
         }
       }
     },
-    "status.pending" : {
+    "environment.changed.message" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pending authorization"
+            "value" : "The API environment has been updated. All future requests will use the new endpoint."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pendiente autorización"
+            "value" : "El entorno de la API ha sido actualizado. Todas las futuras peticiones usarán el nuevo endpoint."
           }
         }
       }
     },
-    "status.unknown" : {
+    "environment.changed.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unknown status"
+            "value" : "Environment Changed"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estado desconocido"
+            "value" : "Entorno Cambiado"
           }
         }
       }
     },
-    "sort.cheapest" : {
+    "environment.config.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(cheapest first)"
+            "value" : "Environment Configuration"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(más baratas primero)"
+            "value" : "Configuración de Entorno"
           }
         }
       }
     },
-    "sort.nearest" : {
+    "environment.current.label" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(nearest first)"
+            "value" : "Current Environment"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(más cercanas primero)"
+            "value" : "Entorno Actual"
           }
         }
       }
     },
-    "price.unit" : {
+    "environment.debug.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "€/L"
+            "value" : "This configuration panel is only available in debug builds and will not appear in production."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "€/L"
+            "value" : "Este panel de configuración solo está disponible en builds de debug y no aparecerá en producción."
           }
         }
       }
     },
-    "tab.search" : {
+    "environment.debug.header" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search"
+            "value" : "Debug Information"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar"
+            "value" : "Información de Debug"
           }
         }
       }
     },
-    "tab.favorites" : {
+    "environment.debug.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favorites"
+            "value" : "Development Only"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favoritos"
+            "value" : "Solo en Desarrollo"
           }
         }
       }
     },
-    "sort.option.price" : {
+    "environment.footer.note" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Price"
+            "value" : "Select an environment to change the API endpoint. Changes take effect immediately."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Precio"
+            "value" : "Selecciona un entorno para cambiar el endpoint de la API. Los cambios se aplican inmediatamente."
           }
         }
       }
     },
-    "sort.option.distance" : {
+    "environment.section.header" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Distance"
+            "value" : "Active Environment"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Distancia"
+            "value" : "Entorno Activo"
+          }
+        }
+      }
+    },
+    "error.gas.stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred while searching for gas stations."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al buscar gasolineras."
+          }
+        }
+      }
+    },
+    "error.location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred while getting your location."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al obtener tu ubicación."
+          }
+        }
+      }
+    },
+    "find.gas.stations.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the button to search for the cheapest gas stations near you"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presiona el botón para buscar las gasolineras más baratas cerca de ti"
+          }
+        }
+      }
+    },
+    "find.gas.stations.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find Gas Stations"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encuentra Gasolineras"
+          }
+        }
+      }
+    },
+    "fuel.type.biodiesel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biodiesel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biodiesel"
+          }
+        }
+      }
+    },
+    "fuel.type.bioethanol" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bioethanol"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bioetanol"
+          }
+        }
+      }
+    },
+    "fuel.type.cng" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compressed Natural Gas"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gas Natural Comprimido"
+          }
+        }
+      }
+    },
+    "fuel.type.gasoila" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesel A"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gasóleo A"
+          }
+        }
+      }
+    },
+    "fuel.type.gasoilb" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesel B"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gasóleo B"
+          }
+        }
+      }
+    },
+    "fuel.type.gasoilpremium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium Diesel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gasóleo Premium"
           }
         }
       }
@@ -511,104 +490,36 @@
         }
       }
     },
-    "fuel.type.gasoila" : {
+    "fuel.type.hydrogen" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diesel A"
+            "value" : "Hydrogen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gasóleo A"
+            "value" : "Hidrógeno"
           }
         }
       }
     },
-    "fuel.type.gasoilb" : {
+    "fuel.type.label" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diesel B"
+            "value" : "Fuel type:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gasóleo B"
-          }
-        }
-      }
-    },
-    "fuel.type.gasoilpremium" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Premium Diesel"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gasóleo Premium"
-          }
-        }
-      }
-    },
-    "fuel.type.biodiesel" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Biodiesel"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Biodiesel"
-          }
-        }
-      }
-    },
-    "fuel.type.bioethanol" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bioethanol"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bioetanol"
-          }
-        }
-      }
-    },
-    "fuel.type.cng" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compressed Natural Gas"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gas Natural Comprimido"
+            "value" : "Tipo de combustible:"
           }
         }
       }
@@ -647,19 +558,354 @@
         }
       }
     },
-    "fuel.type.hydrogen" : {
+    "gas.stations.searching" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hydrogen"
+            "value" : "Searching nearby gas stations..."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hidrógeno"
+            "value" : "Buscando gasolineras cercanas..."
+          }
+        }
+      }
+    },
+    "location.access.denied" : {
+
+    },
+    "location.error %@" : {
+
+    },
+    "location.getting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getting location..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obteniendo ubicación..."
+          }
+        }
+      }
+    },
+    "location.searching" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Searching your location..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscando tu ubicación..."
+          }
+        }
+      }
+    },
+    "location.services.disabled" : {
+
+    },
+    "location.your" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your location:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu ubicación:"
+          }
+        }
+      }
+    },
+    "map.open.route" : {
+
+    },
+    "price.unit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "€/L"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "€/L"
+          }
+        }
+      }
+    },
+    "search.button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Gas Stations"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar Gasolineras"
+          }
+        }
+      }
+    },
+    "search.radius.label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search radius (km):"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radio de búsqueda (km):"
+          }
+        }
+      }
+    },
+    "sort.by.label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por:"
+          }
+        }
+      }
+    },
+    "sort.cheapest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(cheapest first)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(más baratas primero)"
+          }
+        }
+      }
+    },
+    "sort.nearest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(nearest first)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(más cercanas primero)"
+          }
+        }
+      }
+    },
+    "sort.option.distance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distancia"
+          }
+        }
+      }
+    },
+    "sort.option.price" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Price"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precio"
+          }
+        }
+      }
+    },
+    "status.denied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access denied"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceso denegado"
+          }
+        }
+      }
+    },
+    "status.pending" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pending authorization"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendiente autorización"
+          }
+        }
+      }
+    },
+    "status.ready" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready to search"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listo para buscar"
+          }
+        }
+      }
+    },
+    "status.unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown status"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado desconocido"
+          }
+        }
+      }
+    },
+    "tab.about.content" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PC 922"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PC 922"
+          }
+        }
+      }
+    },
+    "tab.environment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Environment"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entorno"
+          }
+        }
+      }
+    },
+    "tab.favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
+    },
+    "tab.search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar"
           }
         }
       }

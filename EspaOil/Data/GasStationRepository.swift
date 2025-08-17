@@ -17,7 +17,7 @@ protocol GasStationRepositoryProtocol {
 final class GasStationRepository: GasStationRepositoryProtocol {
     
     private let session = URLSession.shared
-    private let baseURL = "https://espaoil-server.onrender.com"
+    private let appConfiguration = AppConfiguration.shared
     
     enum RepositoryError: Error {
         case invalidURL
@@ -29,8 +29,8 @@ final class GasStationRepository: GasStationRepositoryProtocol {
     // MARK: - Fetch gas stations nearby
     func fetchGasStationsNearby(latitude: Double, longitude: Double, distance: Double, fuelType: FuelType) async throws -> [GasStation] {
         
-        // Construir la URL con los parámetros
-        var components = URLComponents(string: "\(baseURL)/gas-stations/near")!
+        // Construir la URL con los parámetros usando la configuración del entorno
+        var components = URLComponents(string: "\(appConfiguration.baseURL)/gas-stations/near")!
         components.queryItems = [
             URLQueryItem(name: "lat", value: String(latitude)),
             URLQueryItem(name: "lon", value: String(longitude)),
