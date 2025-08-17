@@ -356,30 +356,30 @@ private extension MyLocationSearchView {
 
 private extension MyLocationSearchView {
     enum Localizables {
-        static let appTitle = "EspaOil"
-        static let fuelTypeLabel = "Tipo de combustible:"
-        static let searchRadiusLabel = "Radio de búsqueda (km):"
-        static let gettingLocationText = "Obteniendo ubicación..."
-        static let searchGasStationsButton = "Buscar Gasolineras"
-        static let searchingLocationText = "Buscando tu ubicación..."
-        static let searchingGasStationsText = "Buscando gasolineras cercanas..."
-        static let sortByLabel = "Ordenar por:"
-        static let findGasStationsTitle = "Encuentra Gasolineras"
-        static let findGasStationsDescription = "Presiona el botón para buscar las gasolineras más baratas cerca de ti"
-        static let locationErrorText = "Ocurrió un error al obtener tu ubicación."
-        static let gasStationErrorText = "Ocurrió un error al buscar gasolineras."
+        static let appTitle = String(localized: "app.title")
+        static let fuelTypeLabel = String(localized: "fuel.type.label")
+        static let searchRadiusLabel = String(localized: "search.radius.label")
+        static let gettingLocationText = String(localized: "location.getting")
+        static let searchGasStationsButton = String(localized: "search.button")
+        static let searchingLocationText = String(localized: "location.searching")
+        static let searchingGasStationsText = String(localized: "gas.stations.searching")
+        static let sortByLabel = String(localized: "sort.by.label")
+        static let findGasStationsTitle = String(localized: "find.gas.stations.title")
+        static let findGasStationsDescription = String(localized: "find.gas.stations.description")
+        static let locationErrorText = String(localized: "error.location")
+        static let gasStationErrorText = String(localized: "error.gas.stations")
         
-        static let yourLocationText = "Tu ubicación:"
+        static let yourLocationText = String(localized: "location.your")
         static func coordinatesFormat(lat: Double, lon: Double) -> String {
-            return "Lat: \(String(format: "%.4f", lat)), Lon: \(String(format: "%.4f", lon))"
+            return String(localized: "coordinates.format \(String(format: "%.4f", lat)) \(String(format: "%.4f", lon))")
         }
         
-        static let readyToSearchText = "Listo para buscar"
-        static let accessDeniedText = "Acceso denegado"
-        static let pendingAuthorizationText = "Pendiente autorización"
-        static let unknownStatusText = "Estado desconocido"
-        static let cheapestFirstText = "(más baratas primero)"
-        static let nearestFirstText = "(más cercanas primero)"
+        static let readyToSearchText = String(localized: "status.ready")
+        static let accessDeniedText = String(localized: "status.denied")
+        static let pendingAuthorizationText = String(localized: "status.pending")
+        static let unknownStatusText = String(localized: "status.unknown")
+        static let cheapestFirstText = String(localized: "sort.cheapest")
+        static let nearestFirstText = String(localized: "sort.nearest")
     }
     
     enum Constants {

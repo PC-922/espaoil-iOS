@@ -22,9 +22,9 @@ struct TabBarView: View {
 
 private extension TabBarView {
     enum Localizables {
-        static let homeTabTitle = "Inicio"
-        static let aboutTabTitle = "About"
-        static let aboutContent = "PC 922"
+        static let homeTabTitle = String(localized: "tab.search")
+        static let aboutTabTitle = String(localized: "tab.favorites")
+        static let aboutContent = String(localized: "tab.about.content")
     }
     
     enum Constants {
