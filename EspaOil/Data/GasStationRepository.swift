@@ -17,7 +17,7 @@ protocol GasStationRepositoryProtocol {
 final class GasStationRepository: GasStationRepositoryProtocol {
     
     private let session = URLSession.shared
-    private let baseURL = "http://localhost:8080"
+    private let baseURL = "https://espaoil-server.onrender.com"
     
     enum RepositoryError: Error {
         case invalidURL
