@@ -11,14 +11,13 @@ struct GasStationMapper {
     
     static func toDomain(from dto: GasStationDTO) -> GasStation {
         return GasStation(
-            comercializadora: dto.trader,
-            nombre: dto.name,
-            pueblo: dto.town,
-            municipio: dto.municipality,
-            horario: dto.schedule,
-            precio: dto.price,
-            latitud: dto.latitude,
-            longitud: dto.longitude
+            name: dto.name,
+            town: dto.town,
+            municipality: dto.municipality,
+            schedule: dto.schedule,
+            price: dto.price,
+            latitude: dto.latitude,
+            longitude: dto.longitude
         )
     }
     

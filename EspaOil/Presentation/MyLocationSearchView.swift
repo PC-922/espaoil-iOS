@@ -21,25 +21,7 @@ struct MyLocationSearchView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                header
-                Divider()
-                if locationManager.isLoading {
-                    loadingLocation
-                } else if gasStationService.isLoadingStations {
-                    loadingGasStations
-                } else if !gasStationService.gasStations.isEmpty {
-                    searchResultsView
-                } else if locationManager.errorMessage != nil {
-                    locationErrorView
-                } else if gasStationService.errorMessage != nil {
-                    gasStationErrorView
-                } else {
-                    emptyState
-                }
-            }
-        }
+        content
         .onChange(of: locationManager.location) { oldValue, newLocation in
             if let location = newLocation {
                 gasStationService.searchNearbyGasStations(location: location)
@@ -53,6 +35,27 @@ struct MyLocationSearchView: View {
 
 //MARK: - Views
 private extension MyLocationSearchView {
+    
+    var content: some View {
+        VStack(spacing: 0) {
+            header
+            Divider()
+            if locationManager.isLoading {
+                loadingLocation
+            } else if gasStationService.isLoadingStations {
+                loadingGasStations
+            } else if !gasStationService.gasStations.isEmpty {
+                searchResultsView
+            } else if locationManager.errorMessage != nil {
+                locationErrorView
+            } else if gasStationService.errorMessage != nil {
+                gasStationErrorView
+            } else {
+                emptyState
+            }
+        }
+    }
+    
     var header: some View {
         VStack {
             title
@@ -78,7 +81,7 @@ private extension MyLocationSearchView {
             Spacer()
             Picker(Localizables.fuelTypeLabel, selection: $gasStationService.selectedFuelType) {
                 ForEach(FuelType.allCases, id: \.self) { fuelType in
-                    Text(fuelType.rawValue)
+                    Text(fuelType.displayName)
                         .tag(fuelType)
                 }
             }
@@ -131,7 +134,7 @@ private extension MyLocationSearchView {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .background(locationManager.isLoading ? Color.gray : Color.blue)
+            .background(locationManager.isLoading ? Color.gray : Color.accentColor)
             .foregroundColor(.white)
             .cornerRadius(12)
         }
@@ -177,25 +180,8 @@ private extension MyLocationSearchView {
 
     var searchResultsView: some View {
         VStack(alignment: .leading, spacing: 0) {
-//            locationInfo
             sort
             gasStationList
-        }
-    }
-    
-    @ViewBuilder
-    var locationInfo: some View {
-        if let location = locationManager.location {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(Localizables.yourLocationText)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Text(Localizables.coordinatesFormat(lat: location.coordinate.latitude, lon: location.coordinate.longitude))
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            }
-            .padding(.horizontal)
-            .padding(.bottom, 8)
         }
     }
     
@@ -243,7 +229,7 @@ private extension MyLocationSearchView {
             .padding(.vertical, 6)
             .background(
                 gasStationService.sortOption == option
-                    ? Color.blue
+                    ? Color.accentColor
                     : Color(.systemGray5)
             )
             .foregroundColor(
@@ -282,7 +268,7 @@ private extension MyLocationSearchView {
         VStack(spacing: 16) {
             Image(systemName: Constants.fuelPumpIcon)
                 .font(.system(size: 50))
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
             
             Text(Localizables.findGasStationsTitle)
                 .font(.headline)
@@ -312,7 +298,7 @@ private extension MyLocationSearchView {
         VStack(spacing: 16) {
             Image(systemName: Constants.fuelPumpSlashIcon)
                 .font(.system(size: 50))
-                .foregroundColor(.red)
+                .foregroundColor(.orange)
             Text(Localizables.gasStationErrorText)
                 .font(.headline)
         }

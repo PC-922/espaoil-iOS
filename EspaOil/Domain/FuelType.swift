@@ -22,4 +22,41 @@ enum FuelType: String, CaseIterable {
     case naturalGasLiquefied = "Gas Natural Licuado"
     case lpg = "Gases licuados del petróleo"
     case hydrogen = "Hidrógeno"
+    
+    var displayName: String {
+        rawValue
+    }
+    
+    var apiValue: String {
+        switch self {
+        case .gasoline95E5:
+            "95_E5"
+        case .gasoline95E5Premium:
+            "95_E5_Premium"
+        case .gasoline95E10:
+            "95_E10"
+        case .gasoline98E5:
+            "98_E5"
+        case .gasoline98E10:
+            "98_E10"
+        case .gasoilA:
+            "Gasoil_A"
+        case .gasoilB:
+            "Gasoil_B"
+        case .gasoilPremium:
+            "Gasoil_Premium"
+        case .biodiesel:
+            rawValue
+        case .bioethanol:
+            rawValue
+        case .naturalGasCompressed:
+            "Gas_Natural_Comprimido"
+        case .naturalGasLiquefied:
+            "Gas_Natural_Licuado"
+        case .lpg:
+            "Gases_licuados_del_petróleo"
+        case .hydrogen:
+            rawValue
+        }
+    }
 }

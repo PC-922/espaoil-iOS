@@ -8,7 +8,6 @@
 import Foundation
 
 struct GasStationDTO: Codable {
-    let trader: String
     let name: String
     let town: String
     let municipality: String
