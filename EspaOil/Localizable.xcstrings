@@ -53,17 +53,38 @@
       }
     },
     "coordinates.format %@ %@" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lat: %1$@, Lon: %2$@"
+          }
+        },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "coordinates.format %1$@ %2$@"
+            "state" : "translated",
+            "value" : "Lat: %1$@, Lon: %2$@"
           }
         }
       }
     },
     "distance.unknown" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown distance"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distancia desconocida"
+          }
+        }
+      }
     },
     "environment.available.header" : {
       "extractionState" : "manual",
@@ -576,10 +597,38 @@
       }
     },
     "location.access.denied" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location access denied. Please enable location services in Settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceso a ubicación denegado. Por favor, habilita los servicios de ubicación en Configuración."
+          }
+        }
+      }
     },
     "location.error %@" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location error: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de ubicación: %@"
+          }
+        }
+      }
     },
     "location.getting" : {
       "extractionState" : "manual",
@@ -616,7 +665,21 @@
       }
     },
     "location.services.disabled" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location services are disabled. Please enable them in Settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los servicios de ubicación están deshabilitados. Por favor, actívalos en Configuración."
+          }
+        }
+      }
     },
     "location.your" : {
       "extractionState" : "manual",
@@ -636,7 +699,21 @@
       }
     },
     "map.open.route" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in Maps"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en Mapas"
+          }
+        }
+      }
     },
     "price.unit" : {
       "extractionState" : "manual",
