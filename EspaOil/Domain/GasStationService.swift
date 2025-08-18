@@ -29,7 +29,10 @@ final class GasStationService: ObservableObject {
     private let repository: GasStationRepositoryProtocol
     
     var searchRadiusValue: Double {
-        return Double(searchRadiusKm) ?? 10.0
+        guard let radius = Double(searchRadiusKm), radius.isFinite && radius > 0 else {
+            return 10.0 // Valor por defecto seguro
+        }
+        return min(max(radius, 0.1), 100.0) // Limitar entre 0.1 y 100 km
     }
     
     init(repository: GasStationRepositoryProtocol = GasStationRepository()) {
@@ -82,7 +85,19 @@ final class GasStationService: ObservableObject {
     private func applySorting() {
         switch sortOption {
         case .price:
-            gasStations = allGasStations.sorted { $0.priceDouble < $1.priceDouble }
+            gasStations = allGasStations.sorted { station1, station2 in
+                let price1 = station1.priceDouble
+                let price2 = station2.priceDouble
+                
+                // Asegurar que ambos precios son válidos
+                guard price1.isFinite && price2.isFinite else {
+                    if !price1.isFinite && price2.isFinite { return false }
+                    if price1.isFinite && !price2.isFinite { return true }
+                    return false // Ambos inválidos, mantener orden
+                }
+                
+                return price1 < price2
+            }
         case .distance:
             guard let userLocation = userLocation else {
                 gasStations = allGasStations
@@ -90,7 +105,13 @@ final class GasStationService: ObservableObject {
             }
             gasStations = allGasStations.sorted { station1, station2 in
                 guard let distance1 = station1.distance(from: userLocation),
-                      let distance2 = station2.distance(from: userLocation) else { return false }
+                      let distance2 = station2.distance(from: userLocation),
+                      distance1.isFinite && distance2.isFinite else {
+                    // Si una distancia es inválida, ponerla al final
+                    if station1.distance(from: userLocation) == nil { return false }
+                    if station2.distance(from: userLocation) == nil { return true }
+                    return false
+                }
                 return distance1 < distance2
             }
         }

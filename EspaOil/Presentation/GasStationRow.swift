@@ -122,8 +122,8 @@ private extension GasStationRow {
 
 private extension GasStationRow {
     enum Localizables {
-        static let priceUnit = "€/L"
-        static let openInMaps = "Ver ruta en el mapa"
+        static let priceUnit = String(localized: "price.unit")
+        static let openInMaps = String(localized: "map.open.route")
     }
     
     enum Constants {

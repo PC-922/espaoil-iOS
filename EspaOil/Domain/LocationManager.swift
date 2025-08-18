@@ -32,17 +32,27 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .denied, .restricted:
-            errorMessage = "Acceso a ubicación denegado. Ve a Configuración para habilitarlo."
+            errorMessage = String(localized: "location.access.denied")
             isLoading = false
         case .authorizedWhenInUse, .authorizedAlways:
-            if CLLocationManager.locationServicesEnabled() {
-                locationManager.requestLocation()
-            } else {
-                errorMessage = "Los servicios de ubicación están deshabilitados en el dispositivo."
-                isLoading = false
-            }
+            startLocationRequest()
         @unknown default:
             isLoading = false
+        }
+    }
+    
+    private func startLocationRequest() {
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                DispatchQueue.main.async {
+                    self.locationManager.requestLocation()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.errorMessage = String(localized: "location.services.disabled")
+                    self.isLoading = false
+                }
+            }
         }
     }
     
@@ -59,7 +69,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         DispatchQueue.main.async {
-            self.errorMessage = "Error al obtener ubicación: \(error.localizedDescription)"
+            self.errorMessage = String(localized: "location.error \(error.localizedDescription)")
             self.isLoading = false
         }
     }
@@ -67,17 +77,20 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         DispatchQueue.main.async {
             self.authorizationStatus = status
+            
+            // Solo iniciar ubicación si hay una solicitud pendiente (isLoading = true)
+            guard self.isLoading else { return }
+            
             switch status {
             case .authorizedWhenInUse, .authorizedAlways:
-                if CLLocationManager.locationServicesEnabled() {
-                    self.locationManager.requestLocation()
-                } else {
-                    self.isLoading = false
-                }
+                self.startLocationRequest()
             case .denied, .restricted:
-                self.errorMessage = "Acceso a ubicación denegado"
+                self.errorMessage = String(localized: "location.access.denied")
                 self.isLoading = false
-            default:
+            case .notDetermined:
+                // Esperando respuesta del usuario, mantener isLoading = true
+                break
+            @unknown default:
                 self.isLoading = false
             }
         }
