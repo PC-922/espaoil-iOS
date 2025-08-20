@@ -15,12 +15,13 @@ struct GasStationRow: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            icon
             VStack(alignment: .leading, spacing: 4) {
                 name
                 fullAdress
-                schedule
-                distance
+                HStack {
+                    schedule
+                    distance
+                }
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 8) {
@@ -28,22 +29,11 @@ struct GasStationRow: View {
                 mapButton
             }
         }
-        .padding(.vertical, 8)
         .padding(.horizontal, 12)
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(Constants.shadowOpacity), radius: Constants.shadowRadius, x: 0, y: 0)
     }
 }
 
 private extension GasStationRow {
-    var icon: some View {
-        Image(systemName: Constants.fuelPumpIcon)
-            .foregroundColor(.accentColor)
-            .font(.title2)
-            .frame(width: Constants.iconWidth)
-    }
-    
     var name: some View {
         Text(gasStation.displayName)
             .font(.headline)
@@ -61,7 +51,6 @@ private extension GasStationRow {
         HStack {
             Image(systemName: Constants.clockIcon)
                 .font(.caption)
-                .foregroundColor(.secondary)
             Text(gasStation.schedule)
                 .font(.caption)
                 .foregroundColor(.secondary)
@@ -74,7 +63,6 @@ private extension GasStationRow {
             HStack {
                 Image(systemName: Constants.locationIcon)
                     .font(.caption)
-                    .foregroundColor(.secondary)
                 Text(gasStation.formattedDistance(from: userLocation))
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -83,7 +71,7 @@ private extension GasStationRow {
     }
     
     var price: some View {
-        VStack(alignment: .trailing) {
+        HStack(spacing: 4) {
             Text(gasStation.price)
                 .font(.title2)
                 .fontWeight(.bold)
