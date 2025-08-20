@@ -14,9 +14,9 @@ enum SortOption: CaseIterable {
     var displayName: String.LocalizationValue {
         switch self {
         case .price:
-            return "sort.option.distance"
-        case .distance:
             return "sort.option.price"
+        case .distance:
+            return "sort.option.distance"
         }
     }
 }
