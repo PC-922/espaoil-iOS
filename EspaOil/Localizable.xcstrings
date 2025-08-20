@@ -596,6 +596,22 @@
         }
       }
     },
+    "keyboard.done" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hecho"
+          }
+        }
+      }
+    },
     "location.access.denied" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -789,13 +805,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(cheapest first)"
+            "value" : "Cheapest first"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(más baratas primero)"
+            "value" : "Más baratas primero"
           }
         }
       }
@@ -806,13 +822,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(nearest first)"
+            "value" : "Nearest first"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(más cercanas primero)"
+            "value" : "Más cercanas primero"
           }
         }
       }

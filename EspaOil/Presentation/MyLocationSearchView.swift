@@ -11,6 +11,7 @@ import CoreLocation
 struct MyLocationSearchView: View {
     @StateObject private var locationManager: LocationManager
     @StateObject private var gasStationService: GasStationService
+    @FocusState private var isTextFieldFocused: Bool
     
     init(
         locationManager: LocationManager = LocationManager(),
@@ -30,7 +31,6 @@ struct MyLocationSearchView: View {
         .animation(.easeInOut(duration: 0.3), value: locationManager.isLoading)
         .animation(.easeInOut(duration: 0.3), value: gasStationService.isLoadingStations)
         .animation(.easeInOut(duration: 0.3), value: gasStationService.gasStations.count)
-        .dismissKeyboardOnTap()
     }
 }
 
@@ -105,6 +105,17 @@ private extension MyLocationSearchView {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: 80)
                 .multilineTextAlignment(.center)
+                .focused($isTextFieldFocused)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button(Localizables.doneKeyboardText) {
+                            isTextFieldFocused = false
+                        }
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                    }
+                }
                 .onChange(of: gasStationService.searchRadiusKm) { oldValue, newValue in
                     // Filtrar solo números y punto decimal
                     let filtered = newValue.filter { Constants.permittedCharacters.contains($0) }
@@ -145,8 +156,8 @@ private extension MyLocationSearchView {
                         .tint(.white)
                 } else {
                     Image(systemName: Constants.locationIcon)
+                    Text(Localizables.searchGasStationsButton)
                 }
-                Text(locationManager.isLoading ? Localizables.gettingLocationText : Localizables.searchGasStationsButton)
             }
             .padding()
             .frame(maxWidth: .infinity)
@@ -202,24 +213,19 @@ private extension MyLocationSearchView {
     }
     
     var sort: some View {
-        VStack(spacing: 12) {
+        HStack(spacing: 12) {
             sortHeader
-            HStack(spacing: 0) {
-                sortOptions
-                Spacer()
-                sortDescriptionView
-            }
+            sortOptions
+            Spacer()
+            sortDescriptionView
         }
         .padding()
     }
     
     var sortHeader: some View {
-        HStack {
-            Text(Localizables.sortByLabel)
-                .font(.subheadline)
-                .fontWeight(.medium)
-            Spacer()
-        }
+        Text(Localizables.sortByLabel)
+            .font(.subheadline)
+            .fontWeight(.medium)
     }
     
     var sortOptions: some View {
@@ -237,7 +243,7 @@ private extension MyLocationSearchView {
             }
         }) {
             HStack {
-                Text(option.displayName)
+                Text(String(localized: option.displayName))
                     .font(.caption)
                     .fontWeight(.medium)
             }
@@ -261,19 +267,23 @@ private extension MyLocationSearchView {
         Text(sortDescription)
             .font(.caption)
             .foregroundColor(.secondary)
-            .padding(.horizontal)
-            .padding(.bottom, 8)
     }
 
     var gasStationList: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(spacing: 12) {
-                ForEach(gasStationService.gasStations) { station in
+                ForEach(
+                    Array(gasStationService.gasStations.enumerated()),
+                    id: \.offset
+                ) { index, station in
                     GasStationRow(
                         gasStation: station,
                         userLocation: locationManager.location
                     )
                     .padding(.horizontal)
+                    if index < gasStationService.gasStations.count - 1 {
+                        Divider()
+                    }
                 }
             }
             .padding(.vertical, 12)
@@ -384,18 +394,17 @@ private extension MyLocationSearchView {
         static let findGasStationsDescription = String(localized: "find.gas.stations.description")
         static let locationErrorText = String(localized: "error.location")
         static let gasStationErrorText = String(localized: "error.gas.stations")
-        
         static let yourLocationText = String(localized: "location.your")
         static func coordinatesFormat(lat: Double, lon: Double) -> String {
             return String(localized: "coordinates.format \(String(format: "%.4f", lat)) \(String(format: "%.4f", lon))")
         }
-        
         static let readyToSearchText = String(localized: "status.ready")
         static let accessDeniedText = String(localized: "status.denied")
         static let pendingAuthorizationText = String(localized: "status.pending")
         static let unknownStatusText = String(localized: "status.unknown")
         static let cheapestFirstText = String(localized: "sort.cheapest")
         static let nearestFirstText = String(localized: "sort.nearest")
+        static let doneKeyboardText = String(localized: "keyboard.done")
     }
     
     enum Constants {

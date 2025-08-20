@@ -11,12 +11,12 @@ enum SortOption: CaseIterable {
     case price
     case distance
     
-    var displayName: String {
+    var displayName: String.LocalizationValue {
         switch self {
         case .price:
-            return "Precio"
+            return "sort.option.price"
         case .distance:
-            return "Distancia"
+            return "sort.option.distance"
         }
     }
 }
