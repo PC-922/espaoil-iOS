@@ -109,7 +109,7 @@ private extension MyLocationSearchView {
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         Spacer()
-                        Button("Hecho") {
+                        Button(Localizables.doneKeyboardText) {
                             isTextFieldFocused = false
                         }
                         .font(.subheadline)
@@ -272,12 +272,18 @@ private extension MyLocationSearchView {
     var gasStationList: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(spacing: 12) {
-                ForEach(gasStationService.gasStations) { station in
+                ForEach(
+                    Array(gasStationService.gasStations.enumerated()),
+                    id: \.offset
+                ) { index, station in
                     GasStationRow(
                         gasStation: station,
                         userLocation: locationManager.location
                     )
                     .padding(.horizontal)
+                    if index < gasStationService.gasStations.count - 1 {
+                        Divider()
+                    }
                 }
             }
             .padding(.vertical, 12)
@@ -388,18 +394,17 @@ private extension MyLocationSearchView {
         static let findGasStationsDescription = String(localized: "find.gas.stations.description")
         static let locationErrorText = String(localized: "error.location")
         static let gasStationErrorText = String(localized: "error.gas.stations")
-        
         static let yourLocationText = String(localized: "location.your")
         static func coordinatesFormat(lat: Double, lon: Double) -> String {
             return String(localized: "coordinates.format \(String(format: "%.4f", lat)) \(String(format: "%.4f", lon))")
         }
-        
         static let readyToSearchText = String(localized: "status.ready")
         static let accessDeniedText = String(localized: "status.denied")
         static let pendingAuthorizationText = String(localized: "status.pending")
         static let unknownStatusText = String(localized: "status.unknown")
         static let cheapestFirstText = String(localized: "sort.cheapest")
         static let nearestFirstText = String(localized: "sort.nearest")
+        static let doneKeyboardText = String(localized: "keyboard.done")
     }
     
     enum Constants {

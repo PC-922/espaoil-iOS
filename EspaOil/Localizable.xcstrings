@@ -596,8 +596,21 @@
         }
       }
     },
-    "Hecho" : {
-
+    "keyboard.done" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hecho"
+          }
+        }
+      }
     },
     "location.access.denied" : {
       "extractionState" : "manual",
