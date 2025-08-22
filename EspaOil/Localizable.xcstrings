@@ -596,6 +596,38 @@
         }
       }
     },
+    "info.data.source.attribution" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EspaOil uses data from the Ministry for Ecological Transition and Demographic Challenge"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EspaOil usa datos del Ministerio para la Transición Ecológica y el Reto Demográfico"
+          }
+        }
+      }
+    },
+    "info.data.updates" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data is updated every 2 hours"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los datos se actualizan cada 2 horas"
+          }
+        }
+      }
+    },
     "keyboard.done" : {
       "localizations" : {
         "en" : {
@@ -931,6 +963,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estado desconocido"
+          }
+        }
+      }
+    },
+    "tab.about" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
           }
         }
       }
