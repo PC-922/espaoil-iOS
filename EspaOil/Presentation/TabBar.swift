@@ -13,15 +13,13 @@ struct TabBarView: View {
             Tab(Localizables.homeTabTitle, systemImage: Constants.homeIcon) {
                 MyLocationSearchView()
             }
-            
             #if DEBUG
             Tab(Localizables.environmentTabTitle, systemImage: Constants.environmentIcon) {
                 EnvironmentConfigView()
             }
             #endif
-            
             Tab(Localizables.aboutTabTitle, systemImage: Constants.aboutIcon) {
-                Text(Localizables.aboutContent)
+                InfoView()
             }
         }
     }
@@ -30,8 +28,7 @@ struct TabBarView: View {
 private extension TabBarView {
     enum Localizables {
         static let homeTabTitle = String(localized: "tab.search")
-        static let aboutTabTitle = String(localized: "tab.favorites")
-        static let aboutContent = String(localized: "tab.about.content")
+        static let aboutTabTitle = String(localized: "tab.about")
         static let environmentTabTitle = String(localized: "tab.environment")
     }
     
